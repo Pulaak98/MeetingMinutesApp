@@ -1,0 +1,149 @@
+﻿@{
+    ViewData["Title"] = "Meeting Minutes";
+}
+
+
+<form id="meetingForm">
+<div class="container-fluid py-3 mb-5">
+    
+    <div class="card shadow-sm border">
+        <div class="card-body">
+            <h4 class="mb-3">Meeting Minutes</h4>
+
+            <!-- First Part -->
+            <div class="card mb-3 border p-1">
+                <div class="card-header fw-bold">Meeting Info</div>
+                <div class="card-body">
+
+                    <!-- Customer Type -->
+                    <div class="row mb-3">
+                        
+                        <div class="col-sm-10 d-flex align-items-center mb-4">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="customerType" value="Corporate" checked>
+                                <label class="form-check-label">Corporate</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="customerType" value="Individual">
+                                <label class="form-check-label">Individual</label>
+                            </div>
+                        </div>
+                        <hr />
+                    </div>
+
+                    <!-- Customer Name + Date + Time -->
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label">Customer Name<span  class="text-danger fw-bold">*</span></label>
+                        <div class="col-sm-4">
+                            <select id="customerSelect" class="form-select"></select>
+                        </div>
+                            <label class="col-sm-1 col-form-label">Date<span  class="text-danger fw-bold">*</span></label>
+                            <div class="col-sm-2">
+                                <input type="text" id="meetingDate" class="form-control" placeholder="Select date" />
+                            </div>
+
+                            <label class="col-sm-1 col-form-label">Time<span  class="text-danger fw-bold">*</span></label>
+                            <div class="col-sm-2">
+                                <input type="text" id="meetingTime" class="form-control" placeholder="Select time" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Meeting Place + Agenda -->
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label ">Meeting Place<span  class="text-danger fw-bold">*</span></label>
+                        <div class="col-sm-4">
+                            <input type="text" id="meetingPlace" class="form-control" placeholder="Meeting place" />
+                        </div>
+
+                        <label class="col-sm-2 col-form-label">Meeting Agenda<span  class="text-danger fw-bold">*</span></label>
+                        <div class="col-sm-4">
+                            <input type="text" id="meetingAgenda" class="form-control" placeholder="Meeting agenda" />
+                        </div>
+                    </div>
+
+                    <!-- Attends Client + Discussion -->
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label">Attends From  Client Side<span  class="text-danger fw-bold">*</span></label>
+                        <div class="col-sm-4">
+                            <textarea id="attendsClient" class="form-control" rows="2" placeholder="Present client side"></textarea>
+                        </div>
+
+                        <label class="col-sm-2 col-form-label">Meeting Discussion<span  class="text-danger fw-bold">*</span></label>
+                        <div class="col-sm-4">
+                            <textarea id="meetingDiscussion" class="form-control" rows="2" placeholder="Meeting discussion"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Attends Host + Decision -->
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label">Attends From Host Side<span  class="text-danger fw-bold">*</span></label>
+                        <div class="col-sm-4">
+                            <textarea id="attendsHost" class="form-control" rows="2" placeholder="Present host side"></textarea>
+                        </div>
+
+                        <label class="col-sm-2 col-form-label">Meeting Decision<span  class="text-danger fw-bold">*</span></label>
+                        <div class="col-sm-4">
+                            <textarea id="meetingDecision" class="form-control" rows="2" placeholder="Meeting decision"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Second Part -->
+            <div class="card mb-3 border">
+                <div class="card-header fw-bold">Interested Product / Service</div>
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Interested Product / Service</label>
+                            <select id="productSelect" class="form-select"></select>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Quantity</label>
+                            <input type="number" id="qtyBox" class="form-control" min="1" />
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Unit</label>
+                            <input type="text" id="unitBox" class="form-control" readonly disabled />
+                        </div>
+                        <div class="col-md-12 d-flex justify-content-start">
+                            <button class="btn btn-primary" id="addRowBtn">
+                                <i class="bi bi-plus-lg"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Table -->
+            <table class="table table-bordered" id="detailsTable">
+                <thead class="table-light">
+                    <tr>
+                        <th>SL#</th>
+                        <th>Interested Product/Service Name</th>
+                        <th>Quantity</th>
+                        <th>Unit</th>
+                        <th style="width:150px">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td colspan="5" class="text-center text-muted">No matching records found</td></tr>
+                </tbody>
+            </table>
+
+            <!-- Alerts -->
+            <div id="msgBox" class="mt-2"></div>
+
+            <!-- Buttons -->
+            <div class="mt-1 p-2 ">
+                <button class="btn btn-success" id="saveBtn">Save</button>
+                <button class="btn btn-secondary" id="refreshBtn">Refresh</button>
+            </div>
+
+        </div>
+    </div>
+</form>
+
+<script src="~/js/meetingMinutes.js"></script>
